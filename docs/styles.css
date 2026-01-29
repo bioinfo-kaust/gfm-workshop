@@ -1,0 +1,244 @@
+/* ==========================================================================
+   Modernized GFM Workshop style – 2026 edition
+   ========================================================================== */
+
+:root {
+  --color-primary:    #0d6efd;      /* bootstrap-like blue, trust */
+  --color-primary-d:  #0b5ed7;
+  --color-accent:     #198754;      /* success green – biology/life-sciences feel */
+  --color-accent-d:   #157347;
+  --color-text:       #212529;
+  --color-text-light: #495057;
+  --color-bg:         #ffffff;
+  --color-bg-light:   #f8f9fa;
+  --color-border:     #dee2e6;
+  --radius:           8px;
+  --shadow-sm:        0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:        0 4px 12px rgba(0,0,0,0.10);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.65;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  z-index: 9999;
+}
+.skip-link:focus { top: 0; }
+
+nav {
+  position: sticky;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid var(--color-border);
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+nav a:hover,
+nav a.active { color: var(--color-primary); }
+
+.hero {
+  background: #f1eaf4;
+  border-bottom: 1px solid var(--color-border);
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 4.5rem);
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero .date-line {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-light);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-d);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: white;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  padding: 5rem 0;
+}
+
+h2 {
+  font-size: 2.25rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-text-light);
+  margin-bottom: 3rem;
+  font-size: 1.15rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+footer {
+  background: #0d1b2a;
+  color: #adb5bd;
+  padding: 4rem 1.5rem 2rem;
+  margin-top: 6rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 3rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #343a40;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero { padding: 6rem 1rem 4rem; }
+  .hero h1 { font-size: 2.8rem; }
+  nav ul { gap: 1.25rem; font-size: 0.95rem; }
+  .card-grid { grid-template-columns: 1fr; }
+}

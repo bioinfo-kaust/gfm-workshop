@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Setup – Genomic Foundation Models Workshop | KAUST</title>
+  <meta name="description" content="Environment setup instructions – Conda, PyTorch, Transformers, PEFT"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---- Setup page styles ---- */
+
+    .setup-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Callout banner */
+    .callout {
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .callout-gpu {
+      background: #d4edda;
+      border: 1px solid #198754;
+      color: #0f5132;
+    }
+    .callout-gpu h3 {
+      color: #198754;
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+    .callout-gpu pre {
+      background: #c3e6cb;
+      color: #0f5132;
+    }
+
+    /* Stepped vertical timeline */
+    .steps {
+      position: relative;
+      padding-left: 3.5rem;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 1.15rem;
+      top: 2rem;
+      bottom: 2rem;
+      width: 2px;
+      background: var(--color-border);
+    }
+
+    .step {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-number {
+      position: absolute;
+      left: -3.5rem;
+      top: 0;
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px white, 0 0 0 5px var(--color-border);
+      z-index: 1;
+    }
+
+    .step-content {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .step-content h3 {
+      color: var(--color-text);
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+    .step-content p {
+      color: var(--color-text-light);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .code-block {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      padding: 1.15rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 0.75rem 0 0;
+      line-height: 1.7;
+    }
+
+    .code-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      background: #e7f1ff;
+      color: var(--color-primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .hint {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      margin-top: 0.6rem;
+      padding-left: 0.25rem;
+    }
+
+    /* Requirements grid */
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    .req-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+    .req-icon {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.1rem;
+      color: var(--color-accent);
+    }
+
+    /* Manual install collapsible */
+    .manual-install {
+      margin-top: 2.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      background: white;
+    }
+    .manual-install summary {
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-text);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .manual-install summary::-webkit-details-marker {
+      display: none;
+    }
+    .manual-install summary::before {
+      content: '▸';
+      font-size: 0.85rem;
+      transition: transform 0.2s;
+    }
+    .manual-install[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .manual-install .details-body {
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .steps {
+        padding-left: 2.75rem;
+      }
+      .step-number {
+        left: -2.75rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.85rem;
+      }
+      .steps::before {
+        left: 0.9rem;
+      }
+      .req-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Copyable code block wrapper */
+    .code-copyable {
+      position: relative;
+    }
+    .code-copyable .code-block {
+      padding-right: 3.5rem;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: background 0.2s;
+      opacity: 0;
+    }
+    .code-copyable:hover .copy-btn {
+      opacity: 1;
+    }
+    .copy-btn:hover {
+      background: var(--color-primary-d);
+    }
+    .copy-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* GPU callout copy button overrides */
+    .callout-gpu .code-copyable .copy-btn {
+      background: #198754;
+    }
+    .callout-gpu .code-copyable .copy-btn:hover {
+      background: #157347;
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav>
+  <div class="nav-container">
+    <div class="logo">GFM Workshop</div>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="materials.html">Materials</a></li>
+      <li><a href="models.html">Models</a></li>
+      <li><a href="setup.html" class="active">Setup</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="container">
+      <h1>Environment Setup</h1>
+      <p class="subtitle">Get ready for the hands-on labs in four steps</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="setup-container">
+
+        <!-- GPU callout -->
+        <div class="callout callout-gpu">
+          <h3>GPU access on Ibex</h3>
+          <p>Each student is assigned priority GPU access by the Ibex team. Request an interactive GPU node before starting:</p>
+          <div class="code-copyable">
+            <pre class="code-block" style="background:#c3e6cb; color:#0f5132; border-color:#198754;">srun --nodes=1 --cpus-per-task=8 --mem=60GB --gres=gpu:v100:1 --time=10:00:00 --pty bash -i</pre>
+            <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
+          </div>
+          <p class="hint" style="color:#0f5132;">Once on the GPU node, follow the steps below.</p>
+        </div>
+
+        <!-- Requirements -->
+        <h2 style="text-align:left; font-size:1.5rem; margin-bottom:1.25rem;">Requirements</h2>
+        <div class="req-grid" style="margin-bottom:2.5rem;">
+          <div class="req-item">
+            <svg class="req-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Python 3.11+
+          </div>
+          <div class="req-item">
+            <svg class="req-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Conda or Mamba
+          </div>
+          <div class="req-item">
+            <svg class="req-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            16 GB RAM recommended
+          </div>
+          <div class="req-item">
+            <svg class="req-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            40+ GB disk space recommended
+          </div>
+          <div class="req-item">
+            <svg class="req-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            NVIDIA GPU ≥ 32 GB VRAM (V100-32GB)
+          </div>
+        </div>
+
+        <!-- Steps -->
+        <h2 style="text-align:left; font-size:1.5rem; margin-bottom:1.75rem;">Quick Start</h2>
+
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <span class="code-label">Terminal</span>
+              <h3>Request a GPU node</h3>
+              <p>From the Ibex login node, request an interactive session with a V100 GPU.</p>
+              <div class="code-copyable">
+                <pre class="code-block">srun --nodes=1 --cpus-per-task=8 --mem=60GB \
+     --gres=gpu:v100:1 --time=10:00:00 --pty bash -i</pre>
+                <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <span class="code-label">Terminal</span>
+              <h3>Create the conda environment</h3>
+              <p>Run the setup script — it uses <strong>mamba</strong> if available, otherwise falls back to conda.</p>
+              <div class="code-copyable">
+                <pre class="code-block">cd jupyter-notebooks/env_setup
+bash setup_env.sh</pre>
+                <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <span class="code-label">Terminal</span>
+              <h3>Activate the environment</h3>
+              <div class="code-copyable">
+                <pre class="code-block">conda activate gfm-workshop</pre>
+                <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <span class="code-label">Terminal</span>
+              <h3>Start JupyterLab</h3>
+              <div class="code-copyable">
+                <pre class="code-block">bash start_jupyter_server_password_abc123.sh</pre>
+                <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
+              </div>
+              <p class="hint">JupyterLab starts on port <strong>8888</strong> with password <strong>abc123</strong>. Access it from your browser using the GPU node hostname.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Manual install (collapsible) -->
+        <details class="manual-install">
+          <summary>Manual install (if setup script fails)</summary>
+          <div class="details-body">
+            <p style="font-size:0.95rem; color:var(--color-text-light); margin-bottom:0.75rem;">
+              Create the environment and install packages manually:
+            </p>
+            <div class="code-copyable">
+              <pre class="code-block">conda create -n gfm-workshop python=3.11 -y
+conda activate gfm-workshop
+
+pip install torch==2.9.1 torchvision torchaudio \
+    --index-url https://download.pytorch.org/whl/cu121
+pip install transformers==4.57.3 \
+    peft==0.13.2 \
+    bitsandbytes==0.48.2 \
+    accelerate==1.11.0 \
+    safetensors==0.7.0 \
+    huggingface-hub==0.36.0
+pip install jupyter pandas==2.3.3 \
+    numpy==2.3.5 scikit-learn==1.7.2 \
+    matplotlib seaborn umap-learn tqdm</pre>
+              <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<iframe src="footer.html" style="border: none; width: 100%; height: 220px; overflow: hidden; background: #0d1b2a; margin-top: 6rem;"></iframe>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const pre = btn.closest('.code-copyable').querySelector('pre');
+    navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Copied!';
+      btn.style.opacity = '1';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.opacity = ''; }, 1500);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

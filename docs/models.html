@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Models – Genomic Foundation Models Workshop | KAUST</title>
+  <meta name="description" content="Overview of DNABERT-2, Nucleotide Transformer variants, HyenaDNA, and Mistral-DNA models used in the workshop"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---- Models page styles ---- */
+
+    .models-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Selection guide callout */
+    .callout {
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .callout-guide {
+      background: #e7f1ff;
+      border: 1px solid var(--color-primary);
+    }
+    .callout-guide h3 {
+      color: var(--color-primary);
+      font-size: 1.05rem;
+      margin-bottom: 0.75rem;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .guide-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.93rem;
+      line-height: 1.5;
+      color: #084298;
+    }
+    .guide-arrow {
+      flex-shrink: 0;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    /* Model card */
+    .model-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 0;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+    .model-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-primary);
+    }
+
+    .model-header {
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .model-header h3 {
+      font-size: 1.2rem;
+      color: var(--color-text);
+      margin: 0;
+    }
+    .model-link {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--color-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .model-link:hover {
+      text-decoration: underline;
+    }
+    .model-link svg {
+      width: 0.85rem;
+      height: 0.85rem;
+    }
+
+    .model-body {
+      padding: 1.25rem 1.75rem;
+    }
+
+    /* Spec grid inside model card */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .spec-item {
+      font-size: 0.93rem;
+      line-height: 1.5;
+    }
+    .spec-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text-light);
+      margin-bottom: 0.2rem;
+    }
+    .spec-value {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    /* Best-for tag */
+    .best-for {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-bg-light);
+    }
+    .best-for-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: #d1e7dd;
+      color: #0f5132;
+      margin-right: 0.25rem;
+    }
+    .best-for-text {
+      display: inline;
+      font-size: 0.93rem;
+      color: var(--color-text-light);
+      margin-left: 0.25rem;
+    }
+
+    /* Model list spacing */
+    .model-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .spec-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav>
+  <div class="nav-container">
+    <div class="logo">GFM Workshop</div>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="materials.html">Materials</a></li>
+      <li><a href="models.html" class="active">Models</a></li>
+      <li><a href="setup.html">Setup</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="container">
+      <h1>Genomic Foundation Models</h1>
+      <p class="subtitle">Pre-trained models used during the workshop – all available on Hugging Face</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="models-container">
+
+        <!-- Quick selection guide -->
+        <div class="callout callout-guide">
+          <h3>Quick model selection guide</h3>
+          <div class="guide-grid">
+            <div class="guide-item">
+              <span class="guide-arrow">&rarr;</span>
+              <span><strong>Learning &amp; exploration</strong><br>DNABERT-2</span>
+            </div>
+            <div class="guide-item">
+              <span class="guide-arrow">&rarr;</span>
+              <span><strong>Classification &amp; transfer</strong><br>Nucleotide Transformer</span>
+            </div>
+            <div class="guide-item">
+              <span class="guide-arrow">&rarr;</span>
+              <span><strong>Long-range tasks</strong><br>HyenaDNA</span>
+            </div>
+            <div class="guide-item">
+              <span class="guide-arrow">&rarr;</span>
+              <span><strong>Fast fine-tuning</strong><br>Mistral-DNA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Model cards -->
+        <div class="model-list">
+
+          <!-- DNABERT-2 -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3>DNABERT-2</h3>
+              <a href="https://huggingface.co/zhihan1996/DNABERT-2-117M" target="_blank" class="model-link">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>
+                zhihan1996/DNABERT-2-117M
+              </a>
+            </div>
+            <div class="model-body">
+              <div class="spec-grid">
+                <div class="spec-item">
+                  <span class="spec-label">Parameters</span>
+                  <span class="spec-value">117M</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Architecture</span>
+                  <span class="spec-value">BERT + ALiBi</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Tokenizer</span>
+                  <span class="spec-value">BPE</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Max length</span>
+                  <span class="spec-value">512 nt</span>
+                </div>
+              </div>
+              <div class="best-for">
+                <span class="best-for-tag">Best for</span>
+                <span class="best-for-text">General exploration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nucleotide Transformer -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3>Nucleotide Transformer</h3>
+              <a href="https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species" target="_blank" class="model-link">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>
+                InstaDeepAI/nucleotide-transformer-*
+              </a>
+            </div>
+            <div class="model-body">
+              <div class="spec-grid">
+                <div class="spec-item">
+                  <span class="spec-label">Variants</span>
+                  <span class="spec-value">50M, 100M, 500M, multi-species</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Architecture</span>
+                  <span class="spec-value">Transformer (k-mer + rotary)</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Training</span>
+                  <span class="spec-value">MLM on diverse genomes</span>
+                </div>
+              </div>
+              <div class="best-for">
+                <span class="best-for-tag">Best for</span>
+                <span class="best-for-text">Transfer learning &amp; classification</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- HyenaDNA -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3>HyenaDNA</h3>
+              <a href="https://huggingface.co/collections/LongSafari/hyenadna-models" target="_blank" class="model-link">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>
+                LongSafari/hyenadna-*
+              </a>
+            </div>
+            <div class="model-body">
+              <div class="spec-grid">
+                <div class="spec-item">
+                  <span class="spec-label">Architecture</span>
+                  <span class="spec-value">Hyena (sub-quadratic long-range)</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Context</span>
+                  <span class="spec-value">Up to 160k nucleotides</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Tokenizer</span>
+                  <span class="spec-value">Single-nucleotide (character-level)</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Training</span>
+                  <span class="spec-value">Autoregressive on human genome</span>
+                </div>
+              </div>
+              <div class="best-for">
+                <span class="best-for-tag">Best for</span>
+                <span class="best-for-text">Long-range genomic tasks, embedding visualization</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mistral-DNA -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3>Mistral-DNA</h3>
+              <a href="https://huggingface.co/RaphaelMourad/Mistral-DNA-v1-17M-hg38" target="_blank" class="model-link">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>
+                RaphaelMourad/Mistral-DNA-*
+              </a>
+            </div>
+            <div class="model-body">
+              <div class="spec-grid">
+                <div class="spec-item">
+                  <span class="spec-label">Parameters</span>
+                  <span class="spec-value">~17–138M (MoE variants)</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Architecture</span>
+                  <span class="spec-value">Mistral-based</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Memory footprint</span>
+                  <span class="spec-value">Very low</span>
+                </div>
+              </div>
+              <div class="best-for">
+                <span class="best-for-tag">Best for</span>
+                <span class="best-for-text">Fast LoRA fine-tuning, limited GPU</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<iframe src="footer.html" style="border: none; width: 100%; height: 220px; overflow: hidden; background: #0d1b2a; margin-top: 6rem;"></iframe>
+
+</body>
+</html>

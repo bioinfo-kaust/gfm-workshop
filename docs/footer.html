@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #203e5c;
+      color: #adb5bd;
+      padding: 2rem 1.5rem 3rem;
+      line-height: 1.65;
+    }
+    .footer-content {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+    .footer-content > div {
+      padding: 0;
+      line-height: 1.8;
+    }
+    .footer-content strong {
+      color: #ffffff;
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .footer-content div > br {
+      content: '';
+    }
+    .footer-content a {
+      color: #66b3ff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-content a:hover {
+      color: #99ccff;
+    }
+  </style>
+</head>
+<body>
+  <div class="footer-content">
+    <div>
+      <strong>Organizer</strong>
+      KAUST Bioinformatics Platform<br>
+      King Abdullah University of Science and Technology (KAUST)<br>
+      Thuwal, Saudi Arabia
+    </div>
+    <div>
+      <strong>Primary Contact</strong>
+      Ikram Ullah<br>
+      Staff Scientist<br>
+      <a href="mailto:ikram.ullah@kaust.edu.sa">ikram.ullah@kaust.edu.sa</a>
+    </div>
+  </div>
+</body>
+</html>
