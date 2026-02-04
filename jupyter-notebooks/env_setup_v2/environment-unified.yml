@@ -89,6 +89,7 @@ dependencies:
       - huggingface-hub==0.36.0
       - datasets
       - evaluate
+      - tabulate
 
       # Visualization & dimensionality reduction
       - umap-learn
