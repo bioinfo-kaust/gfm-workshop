@@ -1,9 +1,11 @@
 CLAUDE.md
 
-# macOS
+# macOS metadata and temp files
 .DS_Store
 .AppleDouble
 .LSOverride
+._*
+~$*
 *.swp
 *.swo
 *~
@@ -13,3 +15,33 @@ CLAUDE.md
 # Jupyter Notebook
 .ipynb_checkpoints/
 */.ipynb_checkpoints/*
+
+# Large genomic data files
+*.fa
+*.fa.gz
+*.fasta
+*.fasta.gz
+*.gtf
+*.gtf.gz
+*.fq
+*.fq.gz
+*.fastq
+*.fastq.gz
+*.bam
+*.sam
+*.vcf
+*.bed
+.fuse_hidden*
+
+# Model outputs and checkpoints
+**/nt_promoter_classifier/
+**/nucleotide-transformer-finetuned-lora-*/
+**/*-finetuned-*/
+checkpoint-*/
+
+# Build and output directories
+backups/
+output/
+dcgm/
+images/
+.claude/
