@@ -112,7 +112,6 @@ See `jupyter-notebooks/env_setup/environment.yml` for complete dependencies.
 - Notebooks are organized sequentially; start with Day 1 morning materials
 - Each session includes both conceptual explanations and practical code examples
 - GPU acceleration is beneficial for fine-tuning exercises
-- For detailed architecture and development notes, see [CLAUDE.md](CLAUDE.md)
 
 ## License
 
