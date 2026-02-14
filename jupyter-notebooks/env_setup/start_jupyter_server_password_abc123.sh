@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 # load conda in non-interactive shells
-source "$(conda info --base)/etc/profile.d/conda.sh"
+CONDA_BASE="${CONDA_PREFIX:-${HOME}/miniconda3}"
+source "${CONDA_BASE}/etc/profile.d/conda.sh"
 
 # activate env
-conda activate gfm-workshop
+conda activate gw-unified
 
 
 # start JupyterLab
