@@ -19,6 +19,7 @@ CLAUDE.md
 # Large genomic data files
 *.fa
 *.fa.gz
+*.fai
 *.fasta
 *.fasta.gz
 *.gtf
@@ -31,6 +32,8 @@ CLAUDE.md
 *.sam
 *.vcf
 *.bed
+*.bigWig
+*.bw
 .fuse_hidden*
 
 # Model outputs and checkpoints
@@ -38,6 +41,9 @@ CLAUDE.md
 **/nucleotide-transformer-finetuned-lora-*/
 **/*-finetuned-*/
 checkpoint-*/
+*.pt
+*.pth
+*.ckpt
 
 # Build and output directories
 backups/
