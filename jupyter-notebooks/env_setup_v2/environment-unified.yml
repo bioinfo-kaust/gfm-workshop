@@ -90,6 +90,9 @@ dependencies:
       - datasets
       - evaluate
       - tabulate
+      - pyBigWig 
+      - pyfaidx 
+      - captum
 
       # Visualization & dimensionality reduction
       - umap-learn
