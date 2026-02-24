@@ -1,8 +1,11 @@
 # Genomic Foundation Models Workshop
 
 [![Website](https://img.shields.io/badge/Website-gfm--workshop-blue?style=flat&logo=github)](https://bioinfo-kaust.github.io/gfm-workshop/)
+[![GitHub Stars](https://img.shields.io/github/stars/bioinfo-kaust/gfm-workshop?style=social)](https://github.com/bioinfo-kaust/gfm-workshop/stargazers)
 
 A comprehensive 2-day workshop covering genomic foundation models (GFMs), PyTorch fundamentals, and fine-tuning techniques for DNA language models.
+
+> If you find these materials useful, please consider **[starring this repository](https://github.com/bioinfo-kaust/gfm-workshop/stargazers)** ⭐ — it helps others in the community discover the workshop.
 
 ## Overview
 
@@ -120,4 +123,4 @@ See `jupyter-notebooks/env_setup/environment-unified.yml` for complete dependenc
 **Ikram Ullah**  
 Staff Scientist, KAUST Bioinformatics Platform  
 King Abdullah University of Science and Technology (KAUST), Saudi Arabia  
-Email: [ikram.ullah@kaust.edu.sa](mailto:ikram.ullah@kaust.edu.sa)
+Email: ikram.ullah [at] kaust.edu.sa
