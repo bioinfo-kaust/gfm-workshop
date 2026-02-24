@@ -1,5 +1,7 @@
 # Genomic Foundation Models Workshop
 
+[![Website](https://img.shields.io/badge/Website-gfm--workshop-blue?style=flat&logo=github)](https://bioinfo-kaust.github.io/gfm-workshop/)
+
 A comprehensive 2-day workshop covering genomic foundation models (GFMs), PyTorch fundamentals, and fine-tuning techniques for DNA language models.
 
 ## Overview

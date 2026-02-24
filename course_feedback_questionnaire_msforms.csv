@@ -1,0 +1,75 @@
+Section,Question_Number,Question_Text,Forms_Question_Type,Options,Allow_Multiple_Answers,Required,Notes
+Section 1: Background & Expectations,1.1,What is your primary research domain?,Choice,"Human genomics|Plant genomics|Animal genomics|Microbial genomics|Multi-organism/comparative genomics|Other (please specify)",No,No,Add "Other" text field
+Section 1: Background & Expectations,1.2,Before this workshop how would you rate your experience with machine learning?,Choice,"Beginner (little to no experience)|Intermediate (used ML tools, some understanding of concepts)|Advanced (built and trained models, understand ML theory)|Expert (extensive experience in ML research/development)",No,No,
+Section 1: Background & Expectations,1.3,Before this workshop how familiar were you with foundation models (e.g. BERT GPT)?,Choice,"Not familiar at all|Heard of them but never used|Used them for NLP/vision tasks|Used genomic foundation models before|Developed/fine-tuned foundation models",No,No,
+Section 1: Background & Expectations,1.4,What were your primary goals for attending this workshop?,Choice,"Understand what genomic foundation models are|Learn how to apply GFMs to my research|Gain hands-on experience with GFM tools|Compare different GFM architectures|Learn best practices for fine-tuning|Network with others working on similar problems|Other (please specify)",Yes,No,Multi-select; add "Other" text field
+Section 1: Background & Expectations,1.5,Were your goals met?,Choice,"Fully met|Mostly met|Partially met|Not met",No,No,
+Section 1: Background & Expectations,1.5b,Please explain your answer to the goals question.,Text (Long),,,No,Subtitle/follow-up to Q1.5
+Section 2: Course Content & Structure,2.1,Overall how would you rate the workshop?,Choice,"Excellent|Very good|Good|Fair|Poor",No,Yes,
+Section 2: Course Content & Structure,2.2,The workshop pacing was:,Choice,"Too fast|Slightly fast|Just right|Slightly slow|Too slow",No,Yes,
+Section 2: Course Content & Structure,2.3,The technical difficulty level was:,Choice,"Too advanced (hard to follow)|Appropriately challenging|About right for my level|Too basic (already knew most content)",No,Yes,
+Section 2: Course Content & Structure,2.4 - Day 1 Morning,Introduction to Genomic Foundation Models,Rating (1-5),,,No,"Use Likert group for all Day 1 Morning items: label 1=Poor, 5=Excellent"
+Section 2: Course Content & Structure,2.4 - Day 1 Morning,Understanding embeddings and representations,Rating (1-5),,,No,Part of Likert group
+Section 2: Course Content & Structure,2.4 - Day 1 Morning,Model selection and comparison,Rating (1-5),,,No,Part of Likert group
+Section 2: Course Content & Structure,2.4 - Day 1 Afternoon,HuggingFace inference examples,Rating (1-5),,,No,Start new Likert group for Day 1 Afternoon
+Section 2: Course Content & Structure,2.4 - Day 1 Afternoon,Token embeddings and feature extraction,Rating (1-5),,,No,Part of Likert group
+Section 2: Course Content & Structure,2.4 - Day 1 Afternoon,Sequence embeddings hands-on,Rating (1-5),,,No,Part of Likert group
+Section 2: Course Content & Structure,2.4 - Day 2 Morning,From research question to fine-tuned model,Rating (1-5),,,No,Start new Likert group for Day 2 Morning
+Section 2: Course Content & Structure,2.4 - Day 2 Morning,Data preparation and splitting strategies,Rating (1-5),,,No,Part of Likert group
+Section 2: Course Content & Structure,2.4 - Day 2 Morning,Understanding staged fine-tuning,Rating (1-5),,,No,Part of Likert group
+Section 2: Course Content & Structure,2.4 - Day 2 Afternoon,K562 enhancer prediction (classification),Rating (1-5),,,No,Start new Likert group for Day 2 Afternoon
+Section 2: Course Content & Structure,2.4 - Day 2 Afternoon,K562 enhancer activity (regression),Rating (1-5),,,No,Part of Likert group
+Section 2: Course Content & Structure,2.4 - Day 2 Afternoon,Model interpretation and saliency analysis,Rating (1-5),,,No,Part of Likert group
+Section 2: Course Content & Structure,2.4 - Day 2 Afternoon,Comparing different GFMs (NT HyenaDNA DNABERT2),Rating (1-5),,,No,Part of Likert group
+Section 2: Course Content & Structure,2.5,Which session/topic was MOST valuable to you?,Text (Long),,,No,
+Section 2: Course Content & Structure,2.6,Which session/topic was LEAST valuable to you?,Text (Long),,,No,
+Section 2: Course Content & Structure,2.7,What topics would you have liked to see covered in more depth?,Text (Long),,,No,
+Section 2: Course Content & Structure,2.8,What topics could have been covered more briefly or omitted?,Text (Long),,,No,
+Section 3: Hands-on Notebooks & Practical Exercises,3.1,The Jupyter notebooks were:,Choice,"Very helpful for learning|Somewhat helpful|Neither helpful nor unhelpful|Not very helpful|Not helpful at all",No,No,
+Section 3: Hands-on Notebooks & Practical Exercises,3.2,The notebooks were well-documented and easy to follow:,Choice,"Strongly agree|Agree|Neutral|Disagree|Strongly disagree",No,No,
+Section 3: Hands-on Notebooks & Practical Exercises,3.3 - HuggingFace inference examples,HuggingFace inference examples,Rating (1-5),,,No,"Use Likert group for all 3.3 items: label 1=Not useful, 5=Very useful"
+Section 3: Hands-on Notebooks & Practical Exercises,3.3 - Token embeddings,Token embeddings notebooks,Rating (1-5),,,No,Part of Likert group
+Section 3: Hands-on Notebooks & Practical Exercises,3.3 - K562 classification,K562 classification notebooks (NT HyenaDNA DNABERT2),Rating (1-5),,,No,Part of Likert group
+Section 3: Hands-on Notebooks & Practical Exercises,3.3 - K562 regression,K562 regression notebooks (NT HyenaDNA),Rating (1-5),,,No,Part of Likert group
+Section 3: Hands-on Notebooks & Practical Exercises,3.4,The biological use case (K562 enhancer prediction) was:,Choice,"Very relevant to my research|Somewhat relevant|Neutral - good for learning but not directly applicable|Not very relevant to my domain|Would have preferred a different use case",No,No,
+Section 3: Hands-on Notebooks & Practical Exercises,3.4b,If you would have preferred a different use case what would have been more relevant?,Text (Short),,,No,Show if "Would have preferred a different use case" selected in 3.4
+Section 3: Hands-on Notebooks & Practical Exercises,3.5,The comparison between GFM approaches and CNN baselines was:,Choice,"Very insightful - highlighted when to use GFMs|Helpful for understanding model performance|Interesting but not critical|Unnecessary - should focus only on GFMs",No,No,
+Section 3: Hands-on Notebooks & Practical Exercises,3.6,Did you encounter technical issues running the notebooks?,Choice,"No issues|Minor issues (easily resolved)|Moderate issues (took time to resolve)|Major issues (couldn't complete exercises)",No,No,
+Section 3: Hands-on Notebooks & Practical Exercises,3.6b,If you had technical issues please describe them:,Text (Long),,,No,Show if not "No issues" selected in 3.6
+Section 4: Bridging the ML Knowledge Gap,4.1,The workshop's approach to teaching ML concepts to bioinformaticians was:,Choice,"Excellent - well-paced with good explanations|Good - could follow with some effort|Adequate - struggled in some areas|Insufficient - needed more ML background|Too basic - could have moved faster",No,No,
+Section 4: Bridging the ML Knowledge Gap,4.2,Which ML concepts did you find most challenging?,Choice,"Difference between classification and regression|Understanding embeddings and representations|Loss functions and optimization|Overfitting and regularization|Fine-tuning vs. training from scratch|Model evaluation metrics (AUROC, Pearson, etc.)|Staged fine-tuning and learning rates|Model interpretability and saliency|None - all concepts were clear|Other (please specify)",Yes,No,Multi-select; add "Other" text field
+Section 4: Bridging the ML Knowledge Gap,4.3,Please rank what helped most in understanding the ML concepts (1 = most helpful):,Ranking,"Lecture explanations|Visual diagrams and figures|Hands-on coding exercises|Comparing different models/approaches|Biological context and use cases",,No,Use Ranking question type
+Section 4: Bridging the ML Knowledge Gap,4.4,Would additional ML prerequisite materials before the workshop have been helpful?,Choice,"Yes, definitely needed|Probably helpful|Not necessary|No, the workshop provided sufficient background",No,No,
+Section 4: Bridging the ML Knowledge Gap,4.4b,If yes what specific prerequisite topics would have been helpful?,Text (Long),,,No,Show if "Yes" or "Probably helpful" selected in 4.4
+Section 5: Materials & Resources,5.1,The lecture slides were:,Choice,"Excellent - clear and informative|Good - generally helpful|Adequate - could be improved|Poor - hard to follow",No,No,
+Section 5: Materials & Resources,5.2,The GitHub repository organization was:,Choice,"Excellent - easy to navigate|Good - found what I needed|Adequate - some confusion|Poor - hard to find materials",No,No,
+Section 5: Materials & Resources,5.3,The README documentation was:,Choice,"Very comprehensive|Adequate for getting started|Needs improvement|Did not use it",No,No,
+Section 5: Materials & Resources,5.4,Which additional resources would be helpful?,Choice,"Video recordings of lectures|Additional reading materials/papers|More example use cases from different domains|Troubleshooting guide for common issues|Extended tutorials for specific models|Links to relevant papers for each model|Glossary of terms|Other (please specify)",Yes,No,Multi-select; add "Other" text field
+Section 6: Logistics & Delivery,6.1,The workshop duration (2 days) was:,Choice,"Too short - needed more time|About right|Too long - could be condensed",No,No,
+Section 6: Logistics & Delivery,6.2,If you felt the workshop was too short what additional time would be ideal?,Choice,"Half day more|One full day more (3 days total)|Two days more (4 days total)|N/A - duration was fine",No,No,
+Section 6: Logistics & Delivery,6.3,The instructor's teaching style was:,Choice,"Excellent - engaging and clear|Very good|Good|Fair|Needs improvement",No,No,
+Section 6: Logistics & Delivery,6.4,The instructor's responsiveness to questions was:,Choice,"Excellent|Very good|Good|Fair|Poor",No,No,
+Section 6: Logistics & Delivery,6.5,The balance between lectures and hands-on exercises was:,Choice,"Too much lecture, not enough hands-on|Slightly more lecture than ideal|Well balanced|Slightly more hands-on than ideal|Too much hands-on, not enough lecture",No,No,
+Section 6: Logistics & Delivery,6.6,Time allocated for hands-on exercises was:,Choice,"Too little - felt rushed|Slightly insufficient|About right|More than needed",No,No,
+Section 7: Application to Your Research,7.1,How likely are you to apply what you learned to your own research?,Choice,"Very likely - already planning to use GFMs|Likely - will explore applications|Possible - need to learn more first|Unlikely - not directly applicable to my work|Very unlikely",No,No,
+Section 7: Application to Your Research,7.2,What barriers might prevent you from applying GFMs in your research?,Choice,"Lack of computational resources (GPUs)|Insufficient training data for my domain|Uncertainty about which model to choose|Need more expertise to fine-tune properly|Lack of support/community for my organism|Time constraints|No immediate research question that fits|Other (please specify)",Yes,No,Multi-select; add "Other" text field
+Section 7: Application to Your Research,7.3 - Row 1,Understanding when to use GFMs vs traditional approaches,Likert (4-point),"Very confident|Confident|Somewhat confident|Not confident",No,No,Use Likert group for all 7.3 items
+Section 7: Application to Your Research,7.3 - Row 2,Selecting the appropriate GFM for a task,Likert (4-point),"Very confident|Confident|Somewhat confident|Not confident",No,No,Part of Likert group
+Section 7: Application to Your Research,7.3 - Row 3,Fine-tuning a GFM on your own data,Likert (4-point),"Very confident|Confident|Somewhat confident|Not confident",No,No,Part of Likert group
+Section 7: Application to Your Research,7.3 - Row 4,Evaluating GFM performance properly,Likert (4-point),"Very confident|Confident|Somewhat confident|Not confident",No,No,Part of Likert group
+Section 7: Application to Your Research,7.3 - Row 5,Interpreting GFM predictions,Likert (4-point),"Very confident|Confident|Somewhat confident|Not confident",No,No,Part of Likert group
+Section 7: Application to Your Research,7.4,What specific research question or project would you like to apply GFMs to?,Text (Long),,,No,
+Section 8: Cross-Domain Considerations,8.1,As a researcher in your domain did you feel the examples were:,Choice,"Directly applicable to my work|Transferable with some adaptation|Useful for learning but need different examples|Too focused on human genomics",No,No,
+Section 8: Cross-Domain Considerations,8.2,Would you have benefited from examples or discussions specific to your research domain?,Choice,"Yes, definitely needed|Would have been helpful but not essential|No, the human example was sufficient for learning|Not sure",No,No,
+Section 8: Cross-Domain Considerations,8.3,What domain-specific challenges or considerations should be addressed in future workshops?,Text (Long),,,No,
+Section 9: Future Improvements,9.1,What was the BEST aspect of this workshop?,Text (Long),,,No,
+Section 9: Future Improvements,9.2,What was the WEAKEST aspect that needs the most improvement?,Text (Long),,,No,
+Section 9: Future Improvements,9.3,What specific changes would you recommend for future offerings?,Text (Long),,,No,
+Section 9: Future Improvements,9.4,Would you recommend this workshop to colleagues?,Choice,"Definitely yes|Probably yes|Not sure|Probably not|Definitely not",No,No,Net Promoter Score style
+Section 9: Future Improvements,9.4b,Please explain your recommendation answer:,Text (Long),,,No,
+Section 9: Future Improvements,9.5,What related topics would you be interested in for future workshops?,Choice,"Advanced fine-tuning techniques (LoRA, QLoRA, etc.)|Multi-modal genomic models (sequence + other data types)|Protein language models|Single-cell genomics with foundation models|Large-scale model deployment and inference|Building custom tokenizers for specific organisms|Transfer learning across species|Model compression and efficiency|Integrating GFMs into existing pipelines|Other (please specify)",Yes,No,Multi-select; add "Other" text field
+Section 10: Open Feedback,10.1,Any additional comments suggestions or feedback?,Text (Long),,,No,
+Optional Contact,C1,Name (optional),Text (Short),,,No,
+Optional Contact,C2,Email (optional),Text (Short),,,No,
+Optional Contact,C3,Preferred contact method,Choice,"Email|Other (please specify)",No,No,
+Optional Contact,C4,Best time for follow-up (if applicable),Text (Short),,,No,
