@@ -30,7 +30,7 @@ This launches JupyterLab on port **8888** with password **`abc123`** and no brow
 
 ## Contact
 
-**Ikram Ullah**
-Staff Scientist, KAUST Bioinformatics Platform
-King Abdullah University of Science and Technology (KAUST), Saudi Arabia
+**Ikram Ullah**  
+Staff Scientist, KAUST Bioinformatics Platform  
+King Abdullah University of Science and Technology (KAUST), Saudi Arabia  
 Email: [ikram.ullah@kaust.edu.sa](mailto:ikram.ullah@kaust.edu.sa)

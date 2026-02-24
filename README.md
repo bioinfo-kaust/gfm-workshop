@@ -117,11 +117,7 @@ See `jupyter-notebooks/env_setup/environment-unified.yml` for complete dependenc
 
 ## Contact
 
-**Ikram Ullah**
-Staff Scientist, KAUST Bioinformatics Platform
-King Abdullah University of Science and Technology (KAUST), Saudi Arabia
+**Ikram Ullah**  
+Staff Scientist, KAUST Bioinformatics Platform  
+King Abdullah University of Science and Technology (KAUST), Saudi Arabia  
 Email: [ikram.ullah@kaust.edu.sa](mailto:ikram.ullah@kaust.edu.sa)
-
-## License
-
-See repository for licensing information.
