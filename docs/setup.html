@@ -271,24 +271,13 @@
   <section class="hero">
     <div class="container">
       <h1>Environment Setup</h1>
-      <p class="subtitle">Get ready for the hands-on labs</p>
+      <p class="subtitle">Run the notebooks on your own machine</p>
     </div>
   </section>
 
   <section>
     <div class="container">
       <div class="setup-container">
-
-        <!-- GPU callout -->
-        <div class="callout callout-gpu">
-          <h3>GPU access on Ibex</h3>
-          <p>Each student is assigned priority GPU access by the Ibex team. Request an interactive GPU node before starting:</p>
-          <div class="code-copyable">
-            <pre class="code-block" style="background:#c3e6cb; color:#0f5132; border-color:#198754;">srun --nodes=1 --cpus-per-task=8 --mem=60GB --gres=gpu:v100:1 --time=10:00:00 --pty bash -i</pre>
-            <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
-          </div>
-          <p class="hint" style="color:#0f5132;">Once on the GPU node, follow the steps below.</p>
-        </div>
 
         <!-- Requirements -->
         <h2 style="text-align:left; font-size:1.5rem; margin-bottom:1.25rem;">Requirements</h2>
@@ -311,7 +300,7 @@
           </div>
           <div class="req-item">
             <svg class="req-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            NVIDIA GPU ≥ 32 GB VRAM (V100-32GB)
+            NVIDIA GPU with ≥ 32 GB VRAM recommended
           </div>
         </div>
 
@@ -324,10 +313,10 @@
             <div class="step-number">1</div>
             <div class="step-content">
               <span class="code-label">Terminal</span>
-              <h3>Login to Ibex</h3>
-              <p>Connect to Ibex using your KAUST portal ID.</p>
+              <h3>Clone the repository</h3>
               <div class="code-copyable">
-                <pre class="code-block">ssh ullahi@ilogin.ibex.kaust.edu.sa</pre>
+                <pre class="code-block">git clone https://github.com/bioinfo-kaust/gfm-workshop.git
+cd gfm-workshop</pre>
                 <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
               </div>
             </div>
@@ -337,12 +326,16 @@
             <div class="step-number">2</div>
             <div class="step-content">
               <span class="code-label">Terminal</span>
-              <h3>Start a tmux session</h3>
-              <p>Create a new tmux or screen session to keep your work running.</p>
+              <h3>Download data files <span style="font-weight:400; color:var(--color-text-light); font-size:0.9rem;">(optional)</span></h3>
+              <p>Required for the Day 2 afternoon notebooks. Two datasets are needed:</p>
               <div class="code-copyable">
-                <pre class="code-block">tmux new -t gfm</pre>
+                <pre class="code-block">cd data/
+bash download_gencode_files.sh
+bash download_k562_h3k27ac_files.sh
+cd ..</pre>
                 <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
               </div>
+              <p class="hint"><strong>download_gencode_files.sh</strong> — GENCODE reference genome &amp; annotations<br><strong>download_k562_h3k27ac_files.sh</strong> — K562 H3K27ac ChIP-seq peaks &amp; signal</p>
             </div>
           </div>
 
@@ -350,12 +343,15 @@
             <div class="step-number">3</div>
             <div class="step-content">
               <span class="code-label">Terminal</span>
-              <h3>Request a GPU node</h3>
-              <p>Start an interactive V100 session.</p>
+              <h3>Install Conda or Mamba</h3>
+              <p>If you don't already have Conda installed, download and install Miniconda:</p>
               <div class="code-copyable">
-                <pre class="code-block">srun --nodes=1 --cpus-per-task=8 --mem=60GB --gres=gpu:v100:1 --time=10:00:00 --pty bash -i</pre>
+                <pre class="code-block"># Linux/macOS
+curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh</pre>
                 <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
               </div>
+              <p class="hint">Already have Conda? Skip to step 4. For faster installs, <a href="https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html" target="_blank" rel="noopener noreferrer">install Mamba</a> — the setup script will use it automatically.</p>
             </div>
           </div>
 
@@ -363,55 +359,19 @@
             <div class="step-number">4</div>
             <div class="step-content">
               <span class="code-label">Terminal</span>
-              <h3>Clone the repository</h3>
+              <h3>Create the conda environment</h3>
+              <p>Run the setup script to create the <code>gw-unified</code> environment with all dependencies:</p>
               <div class="code-copyable">
-                <pre class="code-block">git clone git@github.com:bioinfo-kaust/gfm-workshop.git</pre>
+                <pre class="code-block">cd jupyter-notebooks/env_setup/
+bash setup_env.sh</pre>
                 <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
               </div>
+              <p class="hint">This installs Python 3.11, PyTorch, Transformers, PEFT, and all required packages. May take 5–15 minutes.</p>
             </div>
           </div>
 
           <div class="step">
             <div class="step-number">5</div>
-            <div class="step-content">
-              <span class="code-label">Terminal</span>
-              <h3>Download data files</h3>
-              <div class="code-copyable">
-                <pre class="code-block">cd gfm-workshop/data/
-bash download_gencode_files.sh</pre>
-                <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-number">6</div>
-            <div class="step-content">
-              <span class="code-label">Terminal</span>
-              <h3>Setup Python/Conda</h3>
-              <p>Either use the Ibex module or download and install miniconda.</p>
-              <div class="code-copyable">
-                <pre class="code-block">module load python/3.12.1</pre>
-                <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-number">7</div>
-            <div class="step-content">
-              <span class="code-label">Terminal</span>
-              <h3>Setup conda environment</h3>
-              <div class="code-copyable">
-                <pre class="code-block">cd ../jupyter-notebooks/env_setup_v2/
-bash setup_env.sh</pre>
-                <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-number">8</div>
             <div class="step-content">
               <span class="code-label">Terminal</span>
               <h3>Activate the environment</h3>
@@ -423,44 +383,30 @@ bash setup_env.sh</pre>
           </div>
 
           <div class="step">
-            <div class="step-number">9</div>
-            <div class="step-content">
-              <span class="code-label">Terminal</span>
-              <h3>Note down node IP address</h3>
-              <p>This will be used to connect to JupyterLab remotely. Note down the IP for the <strong>eth0</strong> interface.</p>
-              <div class="code-copyable">
-                <pre class="code-block">ifconfig</pre>
-                <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-number">10</div>
+            <div class="step-number">6</div>
             <div class="step-content">
               <span class="code-label">Terminal</span>
               <h3>Start JupyterLab</h3>
-              <p>Launch the Jupyter server, then detach from tmux with <strong>Ctrl+b</strong> followed by <strong>d</strong>.</p>
+              <p>Navigate back to the repo root and launch JupyterLab:</p>
               <div class="code-copyable">
                 <pre class="code-block">cd ../..
-bash start_jupyter_server_password_abc123.sh</pre>
+jupyter lab</pre>
                 <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
               </div>
-              <p class="hint">Press <strong>Ctrl+b</strong> then <strong>d</strong> to detach from tmux and keep the server running.</p>
             </div>
           </div>
 
           <div class="step">
-            <div class="step-number">11</div>
+            <div class="step-number">7</div>
             <div class="step-content">
               <span class="code-label">Browser</span>
-              <h3>Connect to remote JupyterLab</h3>
-              <p>Open a browser and navigate to the node IP address on port 8888.</p>
+              <h3>Open JupyterLab</h3>
+              <p>JupyterLab will open automatically in your browser. If not, navigate to:</p>
               <div class="code-copyable">
-                <pre class="code-block">http://&lt;node-ip-address&gt;:8888/</pre>
+                <pre class="code-block">http://localhost:8888/</pre>
                 <button class="copy-btn" aria-label="Copy to clipboard"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg> Copy</button>
               </div>
-              <p class="hint">In the password box, type <strong>abc123</strong> and proceed. Now you can run the code examples within the Jupyter notebooks.</p>
+              <p class="hint">Open the <code>jupyter-notebooks/</code> folder and start with the Day 1 materials.</p>
             </div>
           </div>
 
