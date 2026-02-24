@@ -20,7 +20,7 @@ This repository contains hands-on Jupyter notebooks and lecture slides exploring
 ```bash
 cd jupyter-notebooks/env_setup
 bash setup_env.sh
-conda activate gfm-workshop
+conda activate gw-unified
 ```
 
 This creates a Python 3.11 environment with PyTorch, Transformers, PEFT, and all dependencies. The script uses Mamba for faster installation if available.

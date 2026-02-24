@@ -6,18 +6,18 @@
 bash setup_env.sh
 ```
 
-This creates the `gfm-workshop` environment from `environment.yml` (Python 3.11, PyTorch, Transformers, PEFT, etc.). It will use `mamba` if available, otherwise falls back to `conda`.
+This creates the `gw-unified` environment from `environment-unified.yml` (Python 3.11, PyTorch, Transformers, PEFT, etc.). It will use `mamba` if available, otherwise falls back to `conda`.
 
 To install manually instead:
 
 ```bash
-conda env create --name gfm-workshop --file environment.yml --yes
+conda env create --file environment-unified.yml --yes
 ```
 
 ## 2. Activate the environment
 
 ```bash
-conda activate gfm-workshop
+conda activate gw-unified
 ```
 
 ## 3. Start JupyterLab
