@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
 # load conda in non-interactive shells
-CONDA_BASE="${CONDA_PREFIX:-${HOME}/miniconda3}"
-source "${CONDA_BASE}/etc/profile.d/conda.sh"
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    source "$HOME/miniconda3/etc/profile.d/conda.sh"
+elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+    source "$HOME/anaconda3/etc/profile.d/conda.sh"
+elif [ -f "/opt/conda/etc/profile.d/conda.sh" ]; then
+    source "/opt/conda/etc/profile.d/conda.sh"
+elif [ -n "$CONDA_EXE" ]; then
+    source "$(dirname "$(dirname "$CONDA_EXE")")/etc/profile.d/conda.sh"
+fi
 
 # activate env
 conda activate gw-unified

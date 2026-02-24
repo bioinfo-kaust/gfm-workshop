@@ -107,7 +107,7 @@ The environment includes:
 - **Accelerate 1.11.0** — Distributed training utilities
 - **Jupyter 4.x** — Notebook environment
 
-See `jupyter-notebooks/env_setup/environment.yml` for complete dependencies.
+See `jupyter-notebooks/env_setup/environment-unified.yml` for complete dependencies.
 
 ## Notes
 

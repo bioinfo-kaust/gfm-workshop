@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --- Configuration ---
-ENV_FILE="environment.yml"
+ENV_FILE="environment-unified.yml"
 
 # --- Script Logic ---
 

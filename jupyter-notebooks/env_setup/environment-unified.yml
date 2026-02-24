@@ -1,4 +1,4 @@
-name: gfm-workshop
+name: gw-unified
 channels:
   - conda-forge
   - defaults
@@ -89,6 +89,10 @@ dependencies:
       - huggingface-hub==0.36.0
       - datasets
       - evaluate
+      - tabulate
+      - pyBigWig 
+      - pyfaidx 
+      - captum
 
       # Visualization & dimensionality reduction
       - umap-learn
