@@ -18,34 +18,42 @@ This repository contains hands-on Jupyter notebooks and lecture slides exploring
 
 ## Quick Start
 
-### 1. Set up the environment
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/bioinfo-kaust/gfm-workshop.git
+cd gfm-workshop
+```
+
+### 2. Download genomic data (optional)
+
+Required for the Day 2 afternoon notebooks:
+
+```bash
+cd data
+bash download_gencode_files.sh        # GENCODE reference genome & annotations
+bash download_k562_h3k27ac_files.sh   # K562 H3K27ac ChIP-seq peaks & signal
+cd ..
+```
+
+### 3. Create the conda environment
 
 ```bash
 cd jupyter-notebooks/env_setup
 bash setup_env.sh
+```
+
+This creates the `gw-unified` environment (Python 3.11, PyTorch, Transformers, PEFT, and all dependencies). The script uses Mamba for faster installation if available.
+
+### 4. Activate and launch JupyterLab
+
+```bash
 conda activate gw-unified
+cd ../..
+jupyter lab
 ```
 
-This creates a Python 3.11 environment with PyTorch, Transformers, PEFT, and all dependencies. The script uses Mamba for faster installation if available.
-
-### 2. Start JupyterLab
-
-```bash
-bash start_jupyter_server_password_abc123.sh
-```
-
-Access the server at `http://localhost:8888` with password `abc123`.
-
-### 3. Download genomic data (optional)
-
-```bash
-cd data
-# Download GENCODE reference data
-bash download_gencode_files.sh
-
-# Download K562 ChIP-seq data for Day 2 afternoon exercises
-bash download_k562_h3k27ac_files.sh
-```
+JupyterLab will open in your browser at `http://localhost:8888`. Open the `jupyter-notebooks/` folder and start with the Day 1 materials.
 
 ## Contents
 
@@ -57,8 +65,14 @@ jupyter-notebooks/
 ├── 4.day2_after_lunch/           # K562 ChIP-seq practical examples (5 notebooks)
 └── env_setup/                    # Environment configuration and setup scripts
 
-lecture_slides/                    # PowerPoint presentations for each session
-data/                              # GENCODE and K562 data download scripts
+lecture_slides/
+├── 00_workshop_introduction.pptx  # Workshop overview slides
+├── 1.day1_before_lunch/           # GFM intro and model anatomy slides
+├── 2.day1_after_lunch/            # Hugging Face ecosystem slides
+├── 3.day2_before_lunch/           # Fine-tuning lecture slides
+└── 4.day2_after_lunch/            # Research question to fine-tuned model slides
+
+data/                              # GENCODE and K562 data (download scripts + downloaded files)
 docs/                              # Workshop website materials
 ```
 
@@ -81,6 +95,9 @@ docs/                              # Workshop website materials
 - `sequence_classification_finetuning.ipynb` - Full fine-tuning for sequence classification
 
 **Day 2 Afternoon (4.day2_after_lunch/)**
+
+All five notebooks include automated data download and save outputs to a configured output directory.
+
 - `k562_dnabert2_classification.ipynb` - DNABERT2 for K562 ChIP-seq classification
 - `k562_hyenadna_classification.ipynb` - HyenaDNA for K562 ChIP-seq classification
 - `k562_hyenadna_regression.ipynb` - HyenaDNA for K562 regression tasks
