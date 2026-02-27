@@ -23,10 +23,11 @@ conda activate gw-unified
 ## 3. Start JupyterLab
 
 ```bash
-bash start_jupyter_server_password_abc123.sh
+cd ../..
+jupyter lab
 ```
 
-This launches JupyterLab on port **8888** with password **`abc123`** and no browser auto-open. Access it at `http://<hostname>:8888`.
+JupyterLab will open in your browser at `http://localhost:8888`.
 
 ## Contact
 
